@@ -1,4 +1,5 @@
 import { ArrowCircleUp, ArrowCircleDown, CurrencyDollar } from "phosphor-react";
+
 import { SummaryCard, SummaryContainer } from "./styles";
 import { defaultTheme } from "../../styles/defaultTheme";
 

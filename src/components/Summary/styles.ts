@@ -3,14 +3,14 @@ import styled, { css } from "styled-components";
 export const SummaryContainer = styled.section`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
 
   width: 100%;
   max-width: 1260px;
   margin: 0 auto;
   padding: 0 1.5rem;
-  gap: 1rem;
+  gap: 4rem;
   margin-top: -4.75rem;
 `;
 
@@ -25,7 +25,7 @@ export const SummaryCard = styled.div<SummaryCardProps>`
   box-shadow: 0px 0px 10px 5px #00000010;
 
   width: 100%;
-  max-width: 20rem;
+  max-width: 360px;
 
   header {
     display: flex;

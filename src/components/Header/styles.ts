@@ -17,7 +17,7 @@ export const HeaderContent = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
 
-  max-width: 1360px;
+  max-width: 1160px;
   width: 100%;
   padding: 2.5rem 0 7.5rem;
   margin: 0 auto;
