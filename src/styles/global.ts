@@ -30,7 +30,7 @@ export const AuthForm = styled.form`
   flex-direction: column;
   justify-content: flex-start;
 
-  /* gap: 1rem; */
+  gap: 1rem;
   padding: 1rem 0 0;
 `;
 
@@ -41,13 +41,13 @@ export const AuthInput = styled.input`
   padding: 1rem;
   border-radius: 6px;
 
-  & + & {
+  /* & + & {
     margin-top: 1rem;
-  }
+  } */
 `;
 
 export const AuthButton = styled.button`
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   padding: 1rem 0;
   border-radius: 6px;
 
@@ -63,7 +63,7 @@ export const AuthButton = styled.button`
 `;
 
 export const AuthFormLink = styled.a`
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   font-size: 1rem;
   
   text-decoration: none;

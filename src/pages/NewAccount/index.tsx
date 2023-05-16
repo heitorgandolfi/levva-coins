@@ -21,7 +21,7 @@ export const NewAccount = () => {
         <AuthFormLink href="/login">
           Já possui conta? Faça login aqui.
         </AuthFormLink>
-        <AuthButton>Criar conta</AuthButton>
+        <AuthButton type="submit">Criar conta</AuthButton>
       </AuthForm>
     </AuthLayout>
   );
