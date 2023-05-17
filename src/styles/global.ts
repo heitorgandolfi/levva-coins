@@ -24,7 +24,6 @@ export const GlobalStyle = createGlobalStyle`
   input, button{
     border: transparent;
   }
-
 `;
 
 export const AuthForm = styled.form`
@@ -34,6 +33,11 @@ export const AuthForm = styled.form`
 
   gap: 1rem;
   padding: 1rem 0 0;
+
+  p {
+    align-self: flex-start;
+    font-size: 0.75rem;
+  }
 `;
 
 export const AuthInput = styled.input`
