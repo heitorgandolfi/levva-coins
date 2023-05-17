@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, css } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -28,19 +28,19 @@ export const GlobalStyle = createGlobalStyle`
 export const AuthForm = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: center;
 
   gap: 1rem;
   padding: 1rem 0 0;
 `;
 
 export const AuthInput = styled.input`
-  background-color: ${(props) => props.theme["black"]};
-  color: ${(props) => props.theme["white"]};
-
+  width: 100%;
   padding: 1rem;
   border-radius: 6px;
 
+  background-color: ${(props) => props.theme["black"]};
+  color: ${(props) => props.theme["white"]};
   /* & + & {
     margin-top: 1rem;
   } */
@@ -48,7 +48,9 @@ export const AuthInput = styled.input`
 
 export const AuthButton = styled.button`
   /* margin-top: 1rem; */
+  width: 100%;
   padding: 1rem 0;
+  margin-top: 0.5rem;
   border-radius: 6px;
 
   background-color: ${(props) => props.theme["yellow-300"]};
@@ -64,8 +66,9 @@ export const AuthButton = styled.button`
 
 export const AuthFormLink = styled.a`
   /* margin-top: 1rem; */
+  align-self: flex-start;
   font-size: 1rem;
-  
+
   text-decoration: none;
 
   color: ${(props) => props.theme["yellow-500"]};
@@ -74,5 +77,42 @@ export const AuthFormLink = styled.a`
   &:hover {
     /* color: ${(props) => props.theme["yellow-300"]}; */
     text-decoration: underline;
+  }
+`;
+
+interface TransactionTypeButtonProps {
+  variant: "income" | "outcome";
+}
+
+export const TransactionTypeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+`;
+
+export const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  max-width: 212px;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  border: 0;
+
+  background: ${(props) => props.theme["gray-700"]};
+  color: ${(props) => props.theme["gray-300"]};
+
+  svg {
+    color: ${(props) =>
+      props.variant === "income"
+        ? props.theme["yellow-500"]
+        : props.theme["red-500"]};
   }
 `;

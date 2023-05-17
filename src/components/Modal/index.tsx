@@ -1,5 +1,9 @@
 import { ReactNode } from "react";
+
 import * as Dialog from "@radix-ui/react-dialog";
+import { X } from "phosphor-react";
+
+import { CloseButton, Content, Overlay } from "./styles";
 
 interface ModalProps {
   title: string;
@@ -12,15 +16,17 @@ export const Modal = ({ title, trigger, children }: ModalProps) => {
     <Dialog.Root>
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay>
-          <Dialog.Content>
+        <Overlay>
+          <Content>
             <Dialog.Title>{title}</Dialog.Title>
 
-            <Dialog.Close />
+            <CloseButton>
+              <X size={24} />
+            </CloseButton>
 
             {children}
-          </Dialog.Content>
-        </Dialog.Overlay>
+          </Content>
+        </Overlay>
       </Dialog.Portal>
     </Dialog.Root>
   );

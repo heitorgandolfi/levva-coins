@@ -22,7 +22,7 @@ export const SearchFormContainer = styled.form`
   }
 
   &::placeholder {
-    color: ${(props) => props.theme["gray-500"]};
+    color: ${(props) => props.theme["gray-400"]};
   }
 
   button {
