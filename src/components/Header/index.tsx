@@ -1,5 +1,9 @@
 import { ReactNode } from "react";
 
+import { ArrowCircleDown, ArrowCircleUp } from "phosphor-react";
+
+import { Modal } from "../Modal";
+
 import {
   HeaderContainer,
   HeaderContent,
@@ -9,17 +13,15 @@ import {
   UserAvatar,
 } from "./styles";
 
-import { Modal } from "../Modal";
 import {
   AuthForm,
   TransactionTypeButton,
   TransactionTypeContainer,
+  AuthInput,
+  AuthButton,
 } from "../../styles/global";
 
 import levvaCoinsLogo from "../../assets/logo.svg";
-import { AuthInput } from "../../styles/global";
-import { AuthButton } from "../../styles/global";
-import { ArrowCircleDown, ArrowCircleUp } from "phosphor-react";
 
 export const Header = () => {
   const newCategoryButton: ReactNode = (
@@ -45,9 +47,11 @@ export const Header = () => {
         <InteractWrapper>
           <div>
             <Modal title="Nova Categoria" trigger={newCategoryButton}>
-              <p>Cadastre uma categoria antes de criar uma transação.</p>
-              <AuthInput placeholder="Descrição" />
-              <AuthButton>Cadastrar</AuthButton>
+              <AuthForm>
+                <p>Cadastre uma categoria antes de criar uma transação.</p>
+                <AuthInput placeholder="Descrição" />
+                <AuthButton type="submit">Cadastrar</AuthButton>
+              </AuthForm>
             </Modal>
 
             <Modal title="Nova Transação" trigger={newTransactionButton}>
@@ -57,12 +61,20 @@ export const Header = () => {
                 <AuthInput placeholder="Categoria" />
 
                 <TransactionTypeContainer>
-                  <TransactionTypeButton type="button" variant="income" value="income">
+                  <TransactionTypeButton
+                    type="button"
+                    variant="income"
+                    value="income"
+                  >
                     <ArrowCircleUp size={24} />
                     Entrada
                   </TransactionTypeButton>
 
-                  <TransactionTypeButton type="button" variant="outcome" value="outcome">
+                  <TransactionTypeButton
+                    type="button"
+                    variant="outcome"
+                    value="outcome"
+                  >
                     <ArrowCircleDown size={24} />
                     Saída
                   </TransactionTypeButton>
