@@ -1,4 +1,6 @@
-import styled, { createGlobalStyle, css } from "styled-components";
+import * as RadioGroup from "@radix-ui/react-radio-group";
+
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -84,7 +86,7 @@ interface TransactionTypeButtonProps {
   variant: "income" | "outcome";
 }
 
-export const TransactionTypeContainer = styled.div`
+export const TransactionTypeContainer = styled(RadioGroup.Root)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,7 +94,7 @@ export const TransactionTypeContainer = styled.div`
   width: 100%;
 `;
 
-export const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
+export const TransactionTypeButton = styled(RadioGroup.Item)<TransactionTypeButtonProps>`
   cursor: pointer;
 
   display: flex;
@@ -114,5 +116,17 @@ export const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
       props.variant === "income"
         ? props.theme["yellow-500"]
         : props.theme["red-500"]};
+  }
+
+  &[data-state='checked']{
+    transition: background 0.3s;
+
+    color: ${props => props.theme.white};
+    background: ${props => props.variant === "income" ? props.theme["yellow-500"] : props.theme["red-500"]};
+    outline: ${props => props.variant === "income" ? props.theme["yellow-500"] : props.theme["red-500"]};;
+
+  svg {
+    color: ${props => props.theme.white};
+    }
   }
 `;
