@@ -28,7 +28,7 @@ export const AuthWrapper = styled.main`
   }
 `;
 
-export const AuthContent = styled.section`
+export const AuthContent = styled.div`
   div {
     h2 {
       font-size: 1.5rem;

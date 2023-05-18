@@ -2,10 +2,10 @@ import { BrowserRouter } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
 
-import { Router } from "./Router";
-
 import { defaultTheme } from "./styles/defaultTheme";
 import { GlobalStyle } from "./styles/global";
+
+import { Router } from "./Router";
 
 export function App() {
   return (

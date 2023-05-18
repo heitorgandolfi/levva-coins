@@ -18,9 +18,10 @@ export const NewAccount = () => {
         <AuthInput type="text" placeholder="E-mail" />
         <AuthInput type="password" placeholder="Senha" />
         <AuthInput type="password" placeholder="Confirme a senha" />
-        <AuthFormLink href="/login">
-          Já possui conta? Faça login aqui.
-        </AuthFormLink>
+        <AuthFormLink
+          href="/login"
+          children={"Já possui conta? Faça login aqui."}
+        />
         <AuthButton type="submit">Criar conta</AuthButton>
       </AuthForm>
     </AuthLayout>

@@ -11,14 +11,15 @@ export const Login = () => {
   return (
     <AuthLayout
       title="Login"
-      subtitle="Gerencar suas entradas e saída nunca foi tão simples."
+      subtitle="Gerenciar suas entradas e saídas nunca foi tão simples."
     >
       <AuthForm>
         <AuthInput type="text" placeholder="E-mail" />
         <AuthInput type="password" placeholder="Senha" />
-        <AuthFormLink href="/new-account">
-          Não tem cadastro? Cadastre-se aqui.
-        </AuthFormLink>
+        <AuthFormLink
+          href="/new-account"
+          children={"Não tem cadastro? Cadastre-se aqui."}
+        />
         <AuthButton type="submit">Entrar</AuthButton>
       </AuthForm>
     </AuthLayout>

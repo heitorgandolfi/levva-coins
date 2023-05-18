@@ -70,7 +70,11 @@ export const AuthButton = styled.button`
   }
 `;
 
-export const AuthFormLink = styled.a`
+interface AuthFormLinkProps {
+  children: string;
+}
+
+export const AuthFormLink = styled.a<AuthFormLinkProps>`
   /* margin-top: 1rem; */
   align-self: flex-start;
   font-size: 1rem;
@@ -78,17 +82,11 @@ export const AuthFormLink = styled.a`
   text-decoration: none;
 
   color: ${(props) => props.theme["yellow-500"]};
-  transition: 0.4s ease-out;
 
   &:hover {
-    /* color: ${(props) => props.theme["yellow-300"]}; */
     text-decoration: underline;
   }
 `;
-
-interface TransactionTypeButtonProps {
-  variant: "income" | "outcome";
-}
 
 export const TransactionTypeContainer = styled(RadioGroup.Root)`
   display: flex;
@@ -98,6 +96,11 @@ export const TransactionTypeContainer = styled(RadioGroup.Root)`
   width: 100%;
 `;
 
+interface TransactionTypeButtonProps {
+  variant: "income" | "outcome";
+}
+
+// prettier-ignore
 export const TransactionTypeButton = styled(RadioGroup.Item)<TransactionTypeButtonProps>`
   cursor: pointer;
 
