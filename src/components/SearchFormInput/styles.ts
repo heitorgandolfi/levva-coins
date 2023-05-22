@@ -11,6 +11,10 @@ export const SearchFormContainer = styled.form`
   margin: 0 auto;
   margin-top: 4rem;
 
+  @media only screen and (max-width: 1328px) {
+    justify-content: center;
+  }
+
   input {
     width: 1020px;
     padding: 1rem;

@@ -25,6 +25,10 @@ export const HeaderContent = styled.div`
   @media only screen and (min-width: 1440px) {
     position: relative;
   }
+
+  @media only screen and (max-width: 620px) {
+    justify-content: center;
+  }
 `;
 
 export const NewCategoryButton = styled.button`
@@ -104,10 +108,29 @@ export const UserAvatar = styled.img<UserAvatarProps>`
 
 export const InteractWrapper = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap-reverse;
 
   img {
-    margin-left: 2.5rem;
+    margin-left: 1rem;
+  }
+
+  @media only screen and (max-width: 359px) {
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      button {
+        margin: 0;
+      }
+
+      &:first-child {
+        margin-top: 1rem;
+      }
+    }
   }
 `;
