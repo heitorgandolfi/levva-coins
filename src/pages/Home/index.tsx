@@ -16,7 +16,7 @@ export const Home = () => {
       <Summary />
 
       <SearchFormInput />
-
+      
       <TransactionsContainer>
         <TransactionsTable>
           <thead>

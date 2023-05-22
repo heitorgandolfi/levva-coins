@@ -21,6 +21,10 @@ export const HeaderContent = styled.div`
   width: 100%;
   padding: 2.5rem 0 7.5rem;
   margin: 0 auto;
+
+  @media only screen and (min-width: 1440px) {
+    position: relative;
+  }
 `;
 
 export const NewCategoryButton = styled.button`
@@ -64,11 +68,17 @@ interface UserAvatarProps {
 }
 
 export const UserAvatar = styled.img<UserAvatarProps>`
-  width: 3.5rem;
+  width: 3.1rem;
   height: 3.5rem;
   border-radius: 50%;
   border: 2px solid transparent;
   box-shadow: 0px 0px 10px 10px #00000010;
+
+  @media only screen and (min-width: 1440px) {
+    position: absolute;
+    height: auto;
+    right: -7rem;
+  }
 
   transition: all 0.3s;
 
