@@ -69,16 +69,21 @@ interface UserAvatarProps {
 
 export const UserAvatar = styled.img<UserAvatarProps>`
   width: 3.1rem;
-  height: 3.5rem;
+  height: auto;
   border-radius: 50%;
   border: 2px solid transparent;
   box-shadow: 0px 0px 10px 10px #00000010;
 
-  @media only screen and (min-width: 1440px) {
-    position: absolute;
-    height: auto;
-    right: -7rem;
-  }
+  // Ajuste para que a media querie não seja aplicada no avatar do Modal.
+  ${(props) =>
+    props.variant !== "large" &&
+    css`
+      @media only screen and (min-width: 1440px) {
+        position: absolute;
+        height: auto;
+        right: -7rem;
+      }
+    `}
 
   transition: all 0.3s;
 
