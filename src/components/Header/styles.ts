@@ -78,17 +78,6 @@ export const UserAvatar = styled.img<UserAvatarProps>`
   border: 2px solid transparent;
   box-shadow: 0px 0px 10px 10px #00000010;
 
-  // Ajuste para que a media querie não seja aplicada no avatar do Modal.
-  ${(props) =>
-    props.variant !== "large" &&
-    css`
-      @media only screen and (min-width: 1440px) {
-        position: absolute;
-        height: auto;
-        right: -7rem;
-      }
-    `}
-
   transition: all 0.3s;
 
   &:hover {
@@ -97,13 +86,21 @@ export const UserAvatar = styled.img<UserAvatarProps>`
     box-shadow: 0px 0px 10px 20px #00000015;
   }
 
+  // Ajuste para que a media querie não seja aplicada no avatar do Modal.
   ${(props) =>
-    props.variant === "large" &&
-    css`
-      width: 8rem;
-      height: 8rem;
-      margin-bottom: 1rem;
-    `}
+    props.variant === "large"
+      ? css`
+          width: 8rem;
+          height: 8rem;
+          margin-bottom: 1rem;
+        `
+      : css`
+          @media only screen and (min-width: 1440px) {
+            position: absolute;
+            height: auto;
+            right: -7rem;
+          }
+        `}
 `;
 
 export const InteractWrapper = styled.div`
