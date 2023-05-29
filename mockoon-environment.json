@@ -10,7 +10,7 @@
     {
       "uuid": "3b8dcf63-6dbc-4cf4-9cca-4aa5acb639cb",
       "name": "Users",
-      "collapsed": true,
+      "collapsed": false,
       "children": [
         {
           "type": "route",
@@ -120,7 +120,7 @@
       "responses": [
         {
           "uuid": "d54cd6f4-0a9b-484d-9fdb-d7a2afd67d10",
-          "body": "{\n  \"id\": \"b543bf27-3801-4231-8fda-a090d5eaff4d\",\n  \"email\": \"john.doe@levva.io\",\n  \"token\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZW1haWwiOiJqb2huLmRvZUBsZXZ2YS5pbyIsImlhdCI6MTUxNjIzOTAyMn0.30Jmzb4GvabsH8UWOvSKyfaqSAknLG9SqxPn8kpWWtQ\",\n}",
+          "body": "{\n  \"id\": \"b543bf27-3801-4231-8fda-a090d5eaff4d\",\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@levva.io\",\n  \"token\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWQiOiJiNTQzYmYyNy0zODAxLTQyMzEtOGZkYS1hMDkwZDVlYWZmNGQiLCJuYW1lIjoiSm9obiBEb2UiLCJlbWFpbCI6ImpvaG4uZG9lQGxldnZhLmlvIiwiaWF0IjoxNTE2MjM5MDIyfQ.hcTVNLjvAo0KXst6pScEX3SprA4cBMLqsdp5qhgvzRA\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "User authenticated",
@@ -137,7 +137,7 @@
         },
         {
           "uuid": "f7b2e4aa-7603-4010-b1d1-456cfbced044",
-          "body": "{\n  \"hasError\": true,\n  \"message\": \"Usuário ou senha inválidos.\"\n}",
+          "body": "{\n  \"hasError\": true,\n  \"message\": \"Usuário ou senha inválidos\"\n}",
           "latency": 0,
           "statusCode": 401,
           "label": "User unauthenticated",
@@ -187,7 +187,7 @@
       "responses": [
         {
           "uuid": "d8a37e12-8dfc-4369-80b1-2849a67ea1f0",
-          "body": "{}",
+          "body": "",
           "latency": 0,
           "statusCode": 204,
           "label": "User updated",
@@ -218,6 +218,38 @@
               "target": "params",
               "modifier": "userId",
               "value": "b543bf27-3801-4231-8fda-a090d5eaff4d",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "93313134-60a2-4aa5-ba55-671cbf7693c9",
+          "body": "",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "User unauthorized",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "authorization",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "header",
+              "modifier": "authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZW1haWwiOiJqb2huLmRvZUBsZXZ2YS5pbyIsImlhdCI6MTUxNjIzOTAyMn0.30Jmzb4GvabsH8UWOvSKyfaqSAknLG9SqxPn8kpWWtQ",
               "invert": true,
               "operator": "equals"
             }
@@ -325,7 +357,7 @@
       "responses": [
         {
           "uuid": "2d6e0b2a-ec90-4480-9d64-8b39b2d8e1cf",
-          "body": "[\n\n{{#repeat 5 10}}\n{\n  {\n    \"id\": \"{{guid}}\",\n    \"description\": \"{{faker 'commerce.department'}}\"\n  },\n}\n{{/repeat}}\n\n]",
+          "body": "[\n  {{#repeat 5 10}}\n  {\n    \"id\": \"{{guid}}\",\n    \"description\": \"{{faker 'commerce.department'}}\"\n  }\n  {{/repeat}}\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "Listed all categories",
@@ -434,7 +466,7 @@
         },
         {
           "uuid": "64c2dd03-8f4b-43c2-956d-34cf0d98726b",
-          "body": "{\n  \"hasError\": true,\n  \"message\": \"Essa transação está com os parâmetros inválidos. São aceitos valores somente positivos e tipo entrada/saída.\"\n}",
+          "body": "{\n  \"hasError\": true,\n  \"message\": \"Essa transação está com os parâmetros inválidos. São aceitos valores somente positivos e tipo entrada/saída (0 ou 1).\"\n}",
           "latency": 0,
           "statusCode": 400,
           "label": "Invalid transaction params",
@@ -447,14 +479,14 @@
             {
               "target": "body",
               "modifier": "type",
-              "value": "deposit",
+              "value": "0",
               "invert": true,
               "operator": "equals"
             },
             {
               "target": "body",
               "modifier": "type",
-              "value": "credit",
+              "value": "1",
               "invert": true,
               "operator": "equals"
             }
@@ -477,7 +509,7 @@
       "responses": [
         {
           "uuid": "13ca135d-39b1-4b0c-ab83-a5950aa93af7",
-          "body": "[\n\n{{#repeat 5 10}}\n{\n  {\n    \"description\": \"{{faker 'commerce.productName'}}\",\n\t  \"amount\": {{toFixed (float 10 100) 2}},\n\t  \"type\": \"{{oneOf (array 'deposit' 'credit')}}\",\n\t  \"category\": \"{{guid}}\"\n  },\n}\n{{/repeat}}\n\n]",
+          "body": "[\n\n{{#repeat 5 10}}\n{\n  {\n    \"description\": \"{{faker 'commerce.productName'}}\",\n\t  \"amount\": {{toFixed (float 10 100) 2}},\n\t  \"type\": \"{{oneOf (array 'deposit' 'credit')}}\",\n\t  \"category\": {\n\t    \"id\":\"{{guid}}\",\n\t    \"description\":\"{{faker 'commerce.department'}}\"\n\t  }\n  },\n}\n{{/repeat}}\n\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "Listed all transactions",
@@ -528,6 +560,18 @@
     {
       "key": "Content-Type",
       "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
     }
   ],
   "proxyReqHeaders": [

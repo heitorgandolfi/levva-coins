@@ -29,7 +29,7 @@ export const GlobalStyle = createGlobalStyle`
 export const AuthForm = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
 
   gap: 1rem;
   padding: 1rem 0 0;
@@ -50,6 +50,13 @@ export const AuthInput = styled.input`
   /* & + & {
     margin-top: 1rem;
   } */
+`;
+
+export const FormError = styled.span`
+  font-size: 0.75rem;
+
+  color: ${(props) => props.theme["red-300"]};
+  margin: 0 0 1.5rem;
 `;
 
 export const AuthButton = styled.button`
