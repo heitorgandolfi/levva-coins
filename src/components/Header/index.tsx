@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 
 import { ArrowCircleDown, ArrowCircleUp } from "phosphor-react";
 
+import { router } from "../../Router";
+
 import { Modal } from "../Modal";
 
 import {
@@ -10,6 +12,7 @@ import {
   InteractWrapper,
   NewCategoryButton,
   NewTransactionButton,
+  SignOutButton,
   UserAvatar,
 } from "./styles";
 
@@ -22,6 +25,7 @@ import {
 } from "../../styles/global";
 
 import levvaCoinsLogo from "../../assets/logo.svg";
+
 
 export const Header = () => {
   const newCategoryButton: ReactNode = (
@@ -38,6 +42,11 @@ export const Header = () => {
       alt="Foto Usuário"
     />
   );
+
+  function handleSignOut() {
+    window.localStorage.removeItem("user");
+    router.navigate("/login");
+  }
 
   return (
     <HeaderContainer>
@@ -95,6 +104,10 @@ export const Header = () => {
               <AuthInput type="name" placeholder="Heitor Gandolfi" />
               <AuthInput type="email" placeholder="heitor.gandolfi@lolo.com" />
               <AuthButton type="submit">Atualizar</AuthButton>
+
+              <SignOutButton type="button" onClick={handleSignOut}>
+                Sair
+              </SignOutButton>
             </AuthForm>
           </Modal>
         </InteractWrapper>

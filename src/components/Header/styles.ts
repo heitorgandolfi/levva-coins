@@ -90,6 +90,8 @@ export const UserAvatar = styled.img<UserAvatarProps>`
   ${(props) =>
     props.variant === "large"
       ? css`
+          align-self: center;
+
           width: 8rem;
           height: 8rem;
           margin-bottom: 1rem;
@@ -101,6 +103,28 @@ export const UserAvatar = styled.img<UserAvatarProps>`
             right: -7rem;
           }
         `}
+`;
+
+export const SignOutButton = styled.button`
+  background: ${(props) => props.theme["gray-600"]};
+  color: ${(props) => props.theme["white"]};
+  width: 100%;
+
+  padding: 1rem 0;
+  margin-top: 1.5rem;
+
+  border-radius: 6px;
+  border: 1px solid ${(props) => props.theme["yellow-300"]};
+  font-weight: bold;
+
+  transition: all 0.5s ease;
+
+  &:hover {
+    cursor: pointer;
+    background: ${(props) => props.theme["yellow-500"]};
+    border: 1px solid ${(props) => props.theme["yellow-500"]};
+    color: ${(props) => props.theme["black"]};
+  }
 `;
 
 export const InteractWrapper = styled.div`
