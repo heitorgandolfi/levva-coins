@@ -34,6 +34,7 @@ const formSchema = yup
     password: yup.string().required("A senha é obrigatória"),
     confirmPassword: yup
       .string()
+      .oneOf([yup.ref("password")], "As senhas precisam ser idênticas")
       .required("A confirmação de senha é obrigatória"),
   })
   .required();
