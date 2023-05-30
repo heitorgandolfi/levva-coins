@@ -1,4 +1,5 @@
 import * as RadioGroup from "@radix-ui/react-radio-group";
+import { Link } from "react-router-dom";
 
 import styled, { createGlobalStyle } from "styled-components";
 
@@ -81,7 +82,7 @@ interface AuthFormLinkProps {
   children: string;
 }
 
-export const AuthFormLink = styled.a<AuthFormLinkProps>`
+export const AuthFormLink = styled(Link)<AuthFormLinkProps>`
   /* margin-top: 1rem; */
   align-self: flex-start;
   font-size: 1rem;

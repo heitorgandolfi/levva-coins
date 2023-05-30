@@ -67,7 +67,7 @@ export const Login = () => {
         {hasError && <FormError>{errorMessage}</FormError>}
 
         <AuthFormLink
-          href="/new-account"
+          to="/new-account"
           children={"Não tem cadastro? Cadastre-se aqui."}
         />
         <AuthButton type="submit">
