@@ -10,7 +10,6 @@ import {
   HeaderContainer,
   HeaderContent,
   InteractWrapper,
-  NewCategoryButton,
   NewTransactionButton,
   SignOutButton,
   UserAvatar,
@@ -25,13 +24,9 @@ import {
 } from "../../styles/global";
 
 import levvaCoinsLogo from "../../assets/logo.svg";
-
+import { CategoryModal } from "./CategoryModal";
 
 export const Header = () => {
-  const newCategoryButton: ReactNode = (
-    <NewCategoryButton>Nova Categoria</NewCategoryButton>
-  );
-
   const newTransactionButton: ReactNode = (
     <NewTransactionButton>Nova Transação</NewTransactionButton>
   );
@@ -55,13 +50,7 @@ export const Header = () => {
 
         <InteractWrapper>
           <div>
-            <Modal title="Nova Categoria" trigger={newCategoryButton}>
-              <AuthForm>
-                <p>Cadastre uma categoria antes de criar uma transação.</p>
-                <AuthInput placeholder="Descrição" />
-                <AuthButton type="submit">Cadastrar</AuthButton>
-              </AuthForm>
-            </Modal>
+            <CategoryModal />
 
             <Modal title="Nova Transação" trigger={newTransactionButton}>
               <AuthForm>
