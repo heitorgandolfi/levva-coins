@@ -25,12 +25,9 @@ import {
 
 import levvaCoinsLogo from "../../assets/logo.svg";
 import { CategoryModal } from "./CategoryModal";
+import { TransactionModal } from "./TransactionModal";
 
 export const Header = () => {
-  const newTransactionButton: ReactNode = (
-    <NewTransactionButton>Nova Transação</NewTransactionButton>
-  );
-
   const userAvatar: ReactNode = (
     <UserAvatar
       src="https://github.com/heitorgandolfi.png"
@@ -52,35 +49,7 @@ export const Header = () => {
           <div>
             <CategoryModal />
 
-            <Modal title="Nova Transação" trigger={newTransactionButton}>
-              <AuthForm>
-                <AuthInput placeholder="Descrição" />
-                <AuthInput placeholder="Valor" />
-                <AuthInput placeholder="Categoria" />
-
-                <TransactionTypeContainer>
-                  <TransactionTypeButton
-                    type="button"
-                    variant="income"
-                    value="income"
-                  >
-                    <ArrowCircleUp size={24} />
-                    Entrada
-                  </TransactionTypeButton>
-
-                  <TransactionTypeButton
-                    type="button"
-                    variant="outcome"
-                    value="outcome"
-                  >
-                    <ArrowCircleDown size={24} />
-                    Saída
-                  </TransactionTypeButton>
-                </TransactionTypeContainer>
-
-                <AuthButton>Cadastrar</AuthButton>
-              </AuthForm>
-            </Modal>
+            <TransactionModal />
           </div>
 
           <Modal title="Meu perfil" trigger={userAvatar}>

@@ -96,6 +96,19 @@ export const AuthFormLink = styled(Link)<AuthFormLinkProps>`
   }
 `;
 
+export const FormSelect = styled.select`
+  font: 400 1rem "Poppins", sans-serif;
+  background: ${(props) => props.theme.black};
+  color: ${(props) => props.theme["white"]};
+  border: 0;
+
+  padding: 1rem;
+  border-radius: 6px;
+  width: 100%;
+
+  margin: 1rem auto;
+`;
+
 export const TransactionTypeContainer = styled(RadioGroup.Root)`
   display: flex;
   align-items: center;
