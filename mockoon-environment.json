@@ -249,7 +249,7 @@
             {
               "target": "header",
               "modifier": "authorization",
-              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZW1haWwiOiJqb2huLmRvZUBsZXZ2YS5pbyIsImlhdCI6MTUxNjIzOTAyMn0.30Jmzb4GvabsH8UWOvSKyfaqSAknLG9SqxPn8kpWWtQ",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWQiOiJiNTQzYmYyNy0zODAxLTQyMzEtOGZkYS1hMDkwZDVlYWZmNGQiLCJuYW1lIjoiSm9obiBEb2UiLCJlbWFpbCI6ImpvaG4uZG9lQGxldnZhLmlvIiwiaWF0IjoxNTE2MjM5MDIyfQ.hcTVNLjvAo0KXst6pScEX3SprA4cBMLqsdp5qhgvzRA",
               "invert": true,
               "operator": "equals"
             }
@@ -334,7 +334,7 @@
             {
               "target": "header",
               "modifier": "authorization",
-              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZW1haWwiOiJqb2huLmRvZUBsZXZ2YS5pbyIsImlhdCI6MTUxNjIzOTAyMn0.30Jmzb4GvabsH8UWOvSKyfaqSAknLG9SqxPn8kpWWtQ",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWQiOiJiNTQzYmYyNy0zODAxLTQyMzEtOGZkYS1hMDkwZDVlYWZmNGQiLCJuYW1lIjoiSm9obiBEb2UiLCJlbWFpbCI6ImpvaG4uZG9lQGxldnZhLmlvIiwiaWF0IjoxNTE2MjM5MDIyfQ.hcTVNLjvAo0KXst6pScEX3SprA4cBMLqsdp5qhgvzRA",
               "invert": true,
               "operator": "equals"
             }
@@ -394,7 +394,7 @@
             {
               "target": "header",
               "modifier": "authorization",
-              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZW1haWwiOiJqb2huLmRvZUBsZXZ2YS5pbyIsImlhdCI6MTUxNjIzOTAyMn0.30Jmzb4GvabsH8UWOvSKyfaqSAknLG9SqxPn8kpWWtQ",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWQiOiJiNTQzYmYyNy0zODAxLTQyMzEtOGZkYS1hMDkwZDVlYWZmNGQiLCJuYW1lIjoiSm9obiBEb2UiLCJlbWFpbCI6ImpvaG4uZG9lQGxldnZhLmlvIiwiaWF0IjoxNTE2MjM5MDIyfQ.hcTVNLjvAo0KXst6pScEX3SprA4cBMLqsdp5qhgvzRA",
               "invert": true,
               "operator": "equals"
             }
@@ -437,7 +437,7 @@
           "body": "{\n  \"hasError\": true,\n  \"message\": \"Usuário não autenticado.\"\n}",
           "latency": 0,
           "statusCode": 401,
-          "label": "",
+          "label": "User unauthorized",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
@@ -454,7 +454,7 @@
             {
               "target": "header",
               "modifier": "authorization",
-              "value": "12f05718-9846-4520-9c83-862d92a776ea",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWQiOiJiNTQzYmYyNy0zODAxLTQyMzEtOGZkYS1hMDkwZDVlYWZmNGQiLCJuYW1lIjoiSm9obiBEb2UiLCJlbWFpbCI6ImpvaG4uZG9lQGxldnZhLmlvIiwiaWF0IjoxNTE2MjM5MDIyfQ.hcTVNLjvAo0KXst6pScEX3SprA4cBMLqsdp5qhgvzRA",
               "invert": true,
               "operator": "equals"
             }
@@ -509,7 +509,7 @@
       "responses": [
         {
           "uuid": "13ca135d-39b1-4b0c-ab83-a5950aa93af7",
-          "body": "[\n\n{{#repeat 5 10}}\n{\n  {\n    \"description\": \"{{faker 'commerce.productName'}}\",\n\t  \"amount\": {{toFixed (float 10 100) 2}},\n\t  \"type\": \"{{oneOf (array 'deposit' 'credit')}}\",\n\t  \"category\": {\n\t    \"id\":\"{{guid}}\",\n\t    \"description\":\"{{faker 'commerce.department'}}\"\n\t  }\n  },\n}\n{{/repeat}}\n\n]",
+          "body": "[\n\n{{#repeat 5 10}}\n{\n  {\n    \"description\": \"{{faker 'commerce.productName'}}\",\n\t  \"amount\": {{toFixed (float 10 100) 2}},\n\t  \"type\": \"{{oneOf (array 0 1)}}\",\n\t  \"category\": {\n\t    \"id\":\"{{guid}}\",\n\t    \"description\":\"{{faker 'commerce.department'}}\"\n\t  }\n  },\n}\n{{/repeat}}\n\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "Listed all transactions",
@@ -523,6 +523,38 @@
           "disableTemplating": false,
           "fallbackTo404": false,
           "default": true
+        },
+        {
+          "uuid": "2bb777ba-51b5-4fcf-ab61-0904366e6fc8",
+          "body": "{\n  \"hasError\": true,\n  \"message\": \"Usuário não autenticado.\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "User unauthorized",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "authorization",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "header",
+              "modifier": "authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWQiOiJiNTQzYmYyNy0zODAxLTQyMzEtOGZkYS1hMDkwZDVlYWZmNGQiLCJuYW1lIjoiSm9obiBEb2UiLCJlbWFpbCI6ImpvaG4uZG9lQGxldnZhLmlvIiwiaWF0IjoxNTE2MjM5MDIyfQ.hcTVNLjvAo0KXst6pScEX3SprA4cBMLqsdp5qhgvzRA",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
         }
       ],
       "enabled": true,

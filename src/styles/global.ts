@@ -57,7 +57,7 @@ export const FormError = styled.span`
   font-size: 0.75rem;
 
   color: ${(props) => props.theme["red-300"]};
-  margin: 0 0 1.5rem;
+  margin: 0 0 0.6rem;
 `;
 
 export const AuthButton = styled.button`
