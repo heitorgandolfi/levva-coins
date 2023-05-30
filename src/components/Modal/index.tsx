@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, Ref, RefObject } from "react";
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "phosphor-react";
@@ -6,12 +6,18 @@ import { X } from "phosphor-react";
 import { CloseButton, Content, Overlay } from "./styles";
 
 interface ModalProps {
+  closeModalRef?: RefObject<HTMLButtonElement>;
   title: string;
   trigger: ReactNode;
   children: ReactNode;
 }
 
-export const Modal = ({ title, trigger, children }: ModalProps) => {
+export const Modal = ({
+  closeModalRef,
+  title,
+  trigger,
+  children,
+}: ModalProps) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
@@ -20,7 +26,7 @@ export const Modal = ({ title, trigger, children }: ModalProps) => {
           <Content>
             <Dialog.Title>{title}</Dialog.Title>
 
-            <CloseButton>
+            <CloseButton ref={closeModalRef}>
               <X size={24} />
             </CloseButton>
 
