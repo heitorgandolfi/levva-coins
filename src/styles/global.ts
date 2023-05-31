@@ -83,7 +83,6 @@ interface AuthFormLinkProps {
 }
 
 export const AuthFormLink = styled(Link)<AuthFormLinkProps>`
-  /* margin-top: 1rem; */
   align-self: flex-start;
   font-size: 1rem;
 

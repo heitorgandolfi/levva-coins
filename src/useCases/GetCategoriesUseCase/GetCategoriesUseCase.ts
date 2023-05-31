@@ -1,7 +1,6 @@
 import { CategoryService } from "../../services/CategoryService/CategoryService";
 
 import { RequestError } from "../../domain/request";
-import { LoginService } from "../../services/LoginService/LoginService";
 
 import {
   loadCategory,

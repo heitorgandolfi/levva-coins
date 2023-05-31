@@ -1,4 +1,4 @@
-import { ReactNode, Ref, RefObject } from "react";
+import { ReactNode, RefObject } from "react";
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "phosphor-react";

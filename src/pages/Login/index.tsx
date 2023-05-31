@@ -68,7 +68,7 @@ export const Login = () => {
 
         <AuthFormLink
           to="/new-account"
-          children={"Não tem cadastro? Cadastre-se aqui."}
+          children={"Não tem conta? Cadastre-se aqui."}
         />
         <AuthButton type="submit">
           {isLoading ? "Carregando..." : "Entrar"}

@@ -1,7 +1,5 @@
 import { ReactNode } from "react";
 
-import { ArrowCircleDown, ArrowCircleUp } from "phosphor-react";
-
 import { router } from "../../Router";
 
 import { Modal } from "../Modal";
@@ -10,18 +8,11 @@ import {
   HeaderContainer,
   HeaderContent,
   InteractWrapper,
-  NewTransactionButton,
   SignOutButton,
   UserAvatar,
 } from "./styles";
 
-import {
-  AuthForm,
-  TransactionTypeButton,
-  TransactionTypeContainer,
-  AuthInput,
-  AuthButton,
-} from "../../styles/global";
+import { AuthForm, AuthInput, AuthButton } from "../../styles/global";
 
 import levvaCoinsLogo from "../../assets/logo.svg";
 import { CategoryModal } from "./CategoryModal";

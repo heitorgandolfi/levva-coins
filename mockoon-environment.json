@@ -509,7 +509,7 @@
       "responses": [
         {
           "uuid": "13ca135d-39b1-4b0c-ab83-a5950aa93af7",
-          "body": "[\n\n{{#repeat 5 10}}\n  {\n    \"description\": \"{{faker 'commerce.productName'}}\",\n\t  \"amount\": {{toFixed (float 10 100) 2}},\n\t  \"type\": \"{{oneOf (array 0 1)}}\",\n\t  \"category\": {\n\t    \"id\":\"{{guid}}\",\n\t    \"description\":\"{{faker 'commerce.department'}}\"\n\t  }\n  },\n{{/repeat}}\n\n]",
+          "body": "[\n  {{#repeat 5 10}}\n  {\n    \"description\": \"{{faker 'commerce.productName'}}\",\n\t  \"amount\": {{toFixed (float 10 100) 2}},\n\t  \"type\": {{oneOf (array 0 1)}},\n\t  \"category\": {\n\t    \"id\":\"{{guid}}\",\n\t    \"description\":\"{{faker 'commerce.department'}}\"\n\t  },\n\t  \"createdAt\": \"{{now 'dd/MM/YYYY'}}\"\n  }\n  {{/repeat}}\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "Listed all transactions",

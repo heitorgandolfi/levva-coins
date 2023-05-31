@@ -49,6 +49,17 @@ interface PriceHighLightProps {
   variant?: "income" | "outcome";
 }
 
+export const TransactionsTableEmpty = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 200px;
+
+  font-size: 2rem;
+`;
+
 export const PriceHighLight = styled.span<PriceHighLightProps>`
   color: ${(props) =>
     props.variant === "income"
