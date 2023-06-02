@@ -110,7 +110,9 @@ export function TransactionModal() {
             Categoria
           </option>
           {categories.map((category) => (
-            <option value={category.id}>{category.description}</option>
+            <option key={category.id} value={category.id}>
+              {category.description}
+            </option>
           ))}
         </FormSelect>
         {errors.categoryId && (
@@ -119,7 +121,7 @@ export function TransactionModal() {
 
         <TransactionTypeContainer
           {...register("type")}
-          onChange={(event) => setValue("type", event.target.value)}
+          onValueChange={(value) => setValue("type", value)}
         >
           <TransactionTypeButton variant="income" value="income">
             <ArrowCircleUp size={24} />

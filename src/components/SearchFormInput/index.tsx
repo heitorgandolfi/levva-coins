@@ -1,7 +1,9 @@
 import { useStore } from "effector-react";
-import { createEvent, createStore } from "effector";
 
 import TransactionStore from "../../stores/TransactionStore/TransactionStore";
+import { loadFilteredTransactionDone } from "../../stores/FilteredTransactionStore/FilteredTransactionEvents";
+
+// import FilteredTransactionStore from "../../stores/FilteredTransactionStore/FilteredTransactionStore";
 
 import { useForm } from "react-hook-form";
 
@@ -11,7 +13,6 @@ import * as yup from "yup";
 import { MagnifyingGlass } from "phosphor-react";
 
 import { SearchFormContainer } from "./styles";
-import { TransactionState } from "../../stores/TransactionStore/TransactionState";
 
 interface InputProps {
   description: string;
@@ -24,29 +25,20 @@ const formSchema = yup
   })
   .required();
 
-// criar uma store/useCase??
-// evento para atualizar o estado global com o resultado do filtro
-const setSearchResults = createEvent<TransactionState[]>();
-
-// store global iniciada com um array vazio
-export const filteredTransactions = createStore<TransactionState[]>([]).on(
-  setSearchResults,
-  (_, searchResult) => searchResult
-);
-
 export const SearchFormInput = () => {
-  const { isLoading, transactions, hasError, errorMessage } =
-    useStore(TransactionStore);
+  const { transactions } = useStore(TransactionStore);
+  // const { hasError, errorMessage } = useStore(FilteredTransactionStore); // import tb está comentado
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    setFocus,
+    /*formState: { erros },*/
   } = useForm<InputProps>({
     resolver: yupResolver(formSchema),
   });
 
-  // atualizando o estado global com os resultados da busca
   function handleSearchSubmit(data: InputProps) {
     const { description } = data;
 
@@ -56,8 +48,8 @@ export const SearchFormInput = () => {
         description.toLowerCase().trim()
     );
 
-    setSearchResults(searchResult);
-    console.log(searchResult);
+    loadFilteredTransactionDone(searchResult);
+    searchResult.length > 0 ? reset() : setFocus("description");
   }
 
   return (

@@ -5,12 +5,11 @@ import { useStore } from "effector-react";
 import TransactionStore from "../../stores/TransactionStore/TransactionStore";
 import GetTransactionsUseCase from "../../useCases/GetTransactionsUseCase/GetTransactionsUseCase";
 
+import FilteredTransactionStore from "../../stores/FilteredTransactionStore/FilteredTransactionStore";
+
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
-import {
-  SearchFormInput,
-  filteredTransactions,
-} from "../../components/SearchFormInput";
+import { SearchFormInput } from "../../components/SearchFormInput";
 
 import {
   HomeWrapper,
@@ -22,7 +21,9 @@ import {
 
 export const Home = () => {
   const { isLoading, transactions } = useStore(TransactionStore);
-  const filtered = useStore(filteredTransactions);
+  const { transactions: filteredTransactions } = useStore(
+    FilteredTransactionStore
+  );
 
   const money = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -49,7 +50,10 @@ export const Home = () => {
             <td>Data</td>
           </thead>
           <tbody>
-            {(filtered.length ? filtered : transactions).map((transaction) => (
+            {(filteredTransactions.length
+              ? filteredTransactions
+              : transactions
+            ).map((transaction) => (
               <tr key={transaction.id}>
                 <td width="50%">{transaction.description}</td>
                 <td>
