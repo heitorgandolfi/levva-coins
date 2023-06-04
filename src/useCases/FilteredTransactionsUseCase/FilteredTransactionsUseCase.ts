@@ -3,20 +3,20 @@ import { RequestError } from "../../domain/request";
 
 import { FilteredTransactionService } from "../../services/FilteredTransactionService/FilteredTransactionService";
 import {
-  loadTransaction,
-  loadTransactionDone,
-  loadTransactionFail,
-} from "../../stores/TransactionStore/TransactionEvents";
+  loadFilteredTransaction,
+  loadFilteredTransactionDone,
+  loadFilteredTransactionFail,
+} from "../../stores/FilteredTransactionStore/FilteredTransactionEvents";
 
 const execute = async (): Promise<void> => {
-  loadTransaction();
+  loadFilteredTransaction();
 
   return FilteredTransactionService.getFilteredTransactions()
     .then((transactions: TransactionValues[]) => {
-      loadTransactionDone(transactions);
+      loadFilteredTransactionDone(transactions);
     })
     .catch(({ hasError, message }: RequestError) => {
-      loadTransactionFail({ hasError, message });
+      loadFilteredTransactionFail({ hasError, message });
     });
 };
 
