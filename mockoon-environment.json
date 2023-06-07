@@ -272,7 +272,7 @@
       "responses": [
         {
           "uuid": "6408f949-a8c7-4c66-b5f0-80c579c8ae3e",
-          "body": "{\n  \"id\": \"{{guid}}\"\n}",
+          "body": "{\n  \"id\": \"{{guid}}\",\n  \"createdAt\": \"{{now 'dd/MM/YYYY'}}\"\n}",
           "latency": 0,
           "statusCode": 201,
           "label": "Category created",

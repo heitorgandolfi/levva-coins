@@ -25,6 +25,8 @@ export const Home = () => {
     FilteredTransactionStore
   );
 
+
+
   const money = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -44,10 +46,12 @@ export const Home = () => {
       <TransactionsContainer>
         <TransactionsTable>
           <thead>
-            <td>Descrição</td>
-            <td>Valor</td>
-            <td>Categoria</td>
-            <td>Data</td>
+            <tr>
+              <td>Descrição</td>
+              <td>Valor</td>
+              <td>Categoria</td>
+              <td>Data</td>
+            </tr>
           </thead>
           <tbody>
             {(filteredTransactions.length
