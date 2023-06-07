@@ -3,14 +3,10 @@ import { useStore } from "effector-react";
 import TransactionStore from "../../stores/TransactionStore/TransactionStore";
 import { loadFilteredTransactionDone } from "../../stores/FilteredTransactionStore/FilteredTransactionEvents";
 
-// import FilteredTransactionStore from "../../stores/FilteredTransactionStore/FilteredTransactionStore";
-
 import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
-import { MagnifyingGlass } from "phosphor-react";
 
 import { SearchFormContainer } from "./styles";
 
@@ -27,42 +23,34 @@ const formSchema = yup
 
 export const SearchFormInput = () => {
   const { transactions } = useStore(TransactionStore);
-  // const { hasError, errorMessage } = useStore(FilteredTransactionStore); // import tb está comentado
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setFocus,
-    /*formState: { erros },*/
-  } = useForm<InputProps>({
+  const { register, handleSubmit } = useForm<InputProps>({
     resolver: yupResolver(formSchema),
   });
 
-  function handleSearchSubmit(data: InputProps) {
+  // dynamic search by typing
+  function handleNewSearch(data: InputProps) {
     const { description } = data;
-
-    const searchResult = transactions.filter(
+    const filter = transactions.filter(
       (transaction) =>
-        transaction.description.toLowerCase() ===
-        description.toLowerCase().trim()
+        transaction.description
+          .toLowerCase()
+          .includes(description.toLowerCase()) ||
+        transaction.category.description
+          .toLowerCase()
+          .includes(description.toLowerCase()) ||
+        transaction.amount.toString().includes(description.toLowerCase())
     );
-
-    loadFilteredTransactionDone(searchResult);
-    searchResult.length > 0 ? reset() : setFocus("description");
+    loadFilteredTransactionDone(filter);
   }
 
   return (
-    <SearchFormContainer onSubmit={handleSubmit(handleSearchSubmit)}>
+    <SearchFormContainer onChange={handleSubmit(handleNewSearch)}>
       <input
         type="text"
         placeholder="Busque por transações"
         {...register("description")}
       />
-      <button type="submit">
-        <MagnifyingGlass size={20} weight="bold" />
-        Buscar
-      </button>
     </SearchFormContainer>
   );
 };

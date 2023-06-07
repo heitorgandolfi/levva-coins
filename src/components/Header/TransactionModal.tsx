@@ -105,8 +105,8 @@ export function TransactionModal() {
         />
         {errors.amount && <FormError>{errors.amount.message}</FormError>}
 
-        <FormSelect {...register("categoryId")}>
-          <option value="" selected disabled hidden>
+        <FormSelect {...register("categoryId")} defaultValue="">
+          <option value="" disabled hidden>
             Categoria
           </option>
           {categories.map((category) => (
