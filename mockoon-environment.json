@@ -272,7 +272,7 @@
       "responses": [
         {
           "uuid": "6408f949-a8c7-4c66-b5f0-80c579c8ae3e",
-          "body": "{\n  \"id\": \"{{guid}}\",\n  \"createdAt\": \"{{now 'dd/MM/YYYY'}}\"\n}",
+          "body": "{\n  \"id\": \"{{guid}}\"\n}",
           "latency": 0,
           "statusCode": 201,
           "label": "Category created",
@@ -417,7 +417,7 @@
       "responses": [
         {
           "uuid": "59f994da-ebd9-4e0c-b69f-dab3920e383f",
-          "body": "",
+          "body": "{\n  \"id\": \"{{guid}}\",\n  \"createdAt\": \"{{now 'dd/MM/YYYY'}}\"\n}",
           "latency": 0,
           "statusCode": 201,
           "label": " Transaction created",
@@ -509,7 +509,7 @@
       "responses": [
         {
           "uuid": "13ca135d-39b1-4b0c-ab83-a5950aa93af7",
-          "body": "[\n  {{#repeat 5 10}}\n  {\n    \"description\": \"{{faker 'commerce.productName'}}\",\n\t  \"amount\": {{toFixed (float 10 100) 2}},\n\t  \"type\": {{oneOf (array 0 1)}},\n\t  \"category\": {\n\t    \"id\":\"{{guid}}\",\n\t    \"description\":\"{{faker 'commerce.department'}}\"\n\t  },\n\t  \"createdAt\": \"{{now 'dd/MM/YYYY'}}\"\n  }\n  {{/repeat}}\n]",
+          "body": "[\n  {{#repeat 5 10}}\n  {\n    \"id\": \"{{guid}}\",\n    \"description\": \"{{faker 'commerce.productName'}}\",\n\t  \"amount\": {{toFixed (float 10 100) 2}},\n\t  \"type\": {{oneOf (array 0 1)}},\n\t  \"category\": {\n\t    \"id\":\"{{guid}}\",\n\t    \"description\":\"{{faker 'commerce.department'}}\"\n\t  },\n\t  \"createdAt\": \"{{now 'dd/MM/YYYY'}}\"\n  }\n  {{/repeat}}\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "Listed all transactions",
