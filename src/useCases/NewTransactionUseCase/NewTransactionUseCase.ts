@@ -23,7 +23,7 @@ const execute = async ({
     type,
     categoryId,
   })
-    .then(({ createdAt, id }: any) => {
+    .then(({ id, createdAt }: any) => {
       loadCreateTransactionDone([
         {
           id,

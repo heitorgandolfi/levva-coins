@@ -3,9 +3,14 @@ import { useEffect } from "react";
 import { useStore } from "effector-react";
 
 import TransactionStore from "../../stores/TransactionStore/TransactionStore";
+
 import GetTransactionsUseCase from "../../useCases/GetTransactionsUseCase/GetTransactionsUseCase";
 
 import FilteredTransactionStore from "../../stores/FilteredTransactionStore/FilteredTransactionStore";
+
+import DeleteTransactionUseCase from "../../useCases/DeleteTransactionUseCase/DeleteTransactionUseCase";
+
+import { Trash } from "phosphor-react";
 
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
@@ -18,6 +23,8 @@ import {
   TransactionsTable,
   TransactionsTableEmpty,
 } from "./styles";
+
+import { AnimatedSpinnerGap } from "../../styles/global";
 
 export const Home = () => {
   const { isLoading, transactions } = useStore(TransactionStore);
@@ -34,6 +41,10 @@ export const Home = () => {
     GetTransactionsUseCase.execute();
   }, []);
 
+  function handleDeleteTransaction(transactionId: string) {
+    DeleteTransactionUseCase.execute(transactionId);
+  }
+
   return (
     <HomeWrapper>
       <Header />
@@ -49,6 +60,7 @@ export const Home = () => {
               <td>Valor</td>
               <td>Categoria</td>
               <td>Data</td>
+              <td>Ação</td>
             </tr>
           </thead>
           <tbody>
@@ -67,6 +79,25 @@ export const Home = () => {
                 </td>
                 <td>{transaction.category.description}</td>
                 <td>{transaction.createdAt}</td>
+                <td>
+                  {isLoading ? (
+                    <AnimatedSpinnerGap
+                      size={14}
+                      weight="bold"
+                      onClick={() => {
+                        handleDeleteTransaction(transaction.id);
+                      }}
+                    />
+                  ) : (
+                    <Trash
+                      size={20}
+                      weight="bold"
+                      onClick={() => {
+                        handleDeleteTransaction(transaction.id);
+                      }}
+                    />
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>

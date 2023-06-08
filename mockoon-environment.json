@@ -559,6 +559,66 @@
       ],
       "enabled": true,
       "responseMode": null
+    },
+    {
+      "uuid": "9be9aa8a-ba22-4352-ab74-89d96f396e21",
+      "type": "http",
+      "documentation": "Delete transaction",
+      "method": "delete",
+      "endpoint": "transaction/:userId",
+      "responses": [
+        {
+          "uuid": "634646e3-a7b6-46fd-b8e8-20ae13a5ab47",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Deleted user",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "6713719d-b302-4a23-9282-3dac54cbb5ce",
+          "body": "{\n  \"hasError\": true,\n  \"message\": \"Usuário não autenticado.\"\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "User unauthorized",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "authorization",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "header",
+              "modifier": "authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWQiOiJiNTQzYmYyNy0zODAxLTQyMzEtOGZkYS1hMDkwZDVlYWZmNGQiLCJuYW1lIjoiSm9obiBEb2UiLCJlbWFpbCI6ImpvaG4uZG9lQGxldnZhLmlvIiwiaWF0IjoxNTE2MjM5MDIyfQ.hcTVNLjvAo0KXst6pScEX3SprA4cBMLqsdp5qhgvzRA",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
     }
   ],
   "rootChildren": [
@@ -573,6 +633,10 @@
     {
       "type": "folder",
       "uuid": "69e72279-1d06-47aa-8765-c193db891e2a"
+    },
+    {
+      "type": "route",
+      "uuid": "9be9aa8a-ba22-4352-ab74-89d96f396e21"
     }
   ],
   "proxyMode": false,
