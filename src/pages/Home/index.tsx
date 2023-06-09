@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useStore } from "effector-react";
 
@@ -22,6 +22,8 @@ import {
   TransactionsContainer,
   TransactionsTable,
   TransactionsTableEmpty,
+  ConfirmDeleteTask,
+  CancelDeleteTask,
 } from "./styles";
 
 import { AnimatedSpinnerGap } from "../../styles/global";
@@ -31,6 +33,8 @@ export const Home = () => {
   const { transactions: filteredTransactions } = useStore(
     FilteredTransactionStore
   );
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
+  const [selectedTransactionId, setSelectedTransactionId] = useState("");
 
   const money = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -42,7 +46,17 @@ export const Home = () => {
   }, []);
 
   function handleDeleteTransaction(transactionId: string) {
+    setDeleteConfirmation(true);
+    setSelectedTransactionId(transactionId);
+  }
+
+  function confirmDeleteTransaction(transactionId: string) {
     DeleteTransactionUseCase.execute(transactionId);
+    setDeleteConfirmation(false);
+  }
+
+  function cancelDeleteTransaction() {
+    setDeleteConfirmation(false);
   }
 
   return (
@@ -83,13 +97,27 @@ export const Home = () => {
                   {isLoading ? (
                     <AnimatedSpinnerGap size={14} weight="bold" />
                   ) : (
-                    <Trash
-                      size={20}
-                      weight="bold"
-                      onClick={() => {
-                        handleDeleteTransaction(transaction.id);
-                      }}
-                    />
+                    <>
+                      {deleteConfirmation &&
+                      selectedTransactionId === transaction.id ? (
+                        <>
+                          <ConfirmDeleteTask
+                            onClick={() =>
+                              confirmDeleteTransaction(transaction.id)
+                            }
+                          />
+                          <CancelDeleteTask onClick={cancelDeleteTransaction} />
+                        </>
+                      ) : (
+                        <Trash
+                          size={20}
+                          weight="bold"
+                          onClick={() =>
+                            handleDeleteTransaction(transaction.id)
+                          }
+                        />
+                      )}
+                    </>
                   )}
                 </td>
               </tr>

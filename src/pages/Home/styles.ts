@@ -1,3 +1,4 @@
+import { Check, X } from "phosphor-react";
 import styled from "styled-components";
 
 export const HomeWrapper = styled.div`
@@ -30,7 +31,7 @@ export const TransactionsTable = styled.table`
       padding: 1.25rem 2rem;
       background: ${(props) => props.theme["gray-500"]};
 
-      svg:hover {
+      svg:only-child:hover {
         cursor: pointer;
         color: ${(props) => props.theme["red-300"]};
 
@@ -72,4 +73,23 @@ export const PriceHighLight = styled.span<PriceHighLightProps>`
     props.variant === "income"
       ? props.theme["yellow-500"]
       : props.theme["red-300"]};
+`;
+
+export const ConfirmDeleteTask = styled(Check)`
+  margin-right: 0.5rem;
+  color: ${(props) => props.theme["yellow-300"]};
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+`;
+
+export const CancelDeleteTask = styled(X)`
+  color: ${(props) => props.theme["red-300"]};
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
 `;
