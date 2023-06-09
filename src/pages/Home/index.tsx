@@ -81,13 +81,7 @@ export const Home = () => {
                 <td>{transaction.createdAt}</td>
                 <td>
                   {isLoading ? (
-                    <AnimatedSpinnerGap
-                      size={14}
-                      weight="bold"
-                      onClick={() => {
-                        handleDeleteTransaction(transaction.id);
-                      }}
-                    />
+                    <AnimatedSpinnerGap size={14} weight="bold" />
                   ) : (
                     <Trash
                       size={20}

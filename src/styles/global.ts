@@ -172,4 +172,9 @@ const spinAnimation = keyframes`
 
 export const AnimatedSpinnerGap = styled(SpinnerGap)`
   animation: ${spinAnimation} 1.5s linear infinite;
+
+  &:hover {
+    color: inherit !important;
+    cursor: default !important;
+  }
 `;
