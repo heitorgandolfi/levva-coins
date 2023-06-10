@@ -32,6 +32,7 @@ const execute = async ({
     })
     .catch(({ hasError, message }: RequestError) => {
       loadNewAccountFail({ hasError, message });
+      console.log(name, email, password, confirmPassword);
     });
 };
 
