@@ -7,7 +7,7 @@ import { RequestError } from "../../domain/request";
 
 const getFilteredTransactions = async (): Promise<TransactionValues[]> => {
   return Api.get({
-    url: "/transaction",
+    url: "/transaction/all",
   })
     .then((response) => {
       return response.data;

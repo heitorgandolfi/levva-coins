@@ -24,7 +24,7 @@ const createCategory = async ({
 
 const getCategories = async (): Promise<CategoryValues[]> => {
   return Api.get({
-    url: "/category",
+    url: "/category/all",
   })
     .then((response) => {
       return response.data;

@@ -14,14 +14,13 @@ Axios.interceptors.request.use((config) => {
     window.localStorage.getItem("user") ?? "{}"
   ) as LoginValues;
 
-  if (user.token) config.headers.Authorization = user.token;
+  if (user.token) config.headers.Authorization = `Bearer ${user.token}`;
 
   return config;
 });
 
 const Api = {
-  get: ({ url }: IRequest): Promise<any> => Axios.get(`${getApiHost()}${url}`),
-  // preciso adicionar o config aqui sem quebrar o código
+  get: ({ url, config }: IRequest): Promise<any> => Axios.get(`${getApiHost()}${url}`, config),
 
   post: ({ url, body, config }: IRequest): Promise<any> =>
     Axios.post(`${getApiHost()}${url}`, body, config),
