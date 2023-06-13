@@ -10,7 +10,7 @@ const authenticateUser = async ({
   password,
 }: LoginParams): Promise<LoginValues> => {
   return Api.post({
-    url: "/user/login",
+    url: "/user/auth",
     body: {
       email,
       password,

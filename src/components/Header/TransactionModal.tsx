@@ -71,7 +71,7 @@ export function TransactionModal() {
     description,
     amount,
     type,
-    categoryId,
+    categoryId
   }: FormProps) {
     NewTransactionUseCase.execute({
       description,

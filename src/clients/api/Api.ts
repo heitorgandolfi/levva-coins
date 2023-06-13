@@ -14,7 +14,7 @@ Axios.interceptors.request.use((config) => {
     window.localStorage.getItem("user") ?? "{}"
   ) as LoginValues;
 
-  if (user.token) config.headers.Authorization = `Bearer ${user.token}`;
+  if (user.token) config.headers.Authorization = user.token;
 
   return config;
 });

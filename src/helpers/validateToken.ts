@@ -9,7 +9,7 @@ export function validateToken() {
   if (!user.token) return false;
 
   return jwt.verify(
-    user.token.split(" ")[0],
+    user.token.split(" ")[1],
     "levva-coins-secret",
     (error) => {
       return error ? false : true;
