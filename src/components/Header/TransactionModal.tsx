@@ -27,6 +27,7 @@ import {
   TransactionTypeButton,
   TransactionTypeContainer,
 } from "../../styles/global";
+import GetTransactionsUseCase from "../../useCases/GetTransactionsUseCase/GetTransactionsUseCase";
 
 interface FormProps {
   description: string;
@@ -55,9 +56,18 @@ export function TransactionModal() {
 
   const { categories } = useStore(CategoryStore);
 
-  const { isLoading, hasError, errorMessage } = useStore(TransactionStore);
+  const { isLoading, hasError, errorMessage, transactions } =
+    useStore(TransactionStore);
 
-  const { transactions } = useStore(TransactionStore);
+  const [newTransactionCreated, setNewTransactionCreated] =
+    useState<Boolean>(false);
+
+  useEffect(() => {
+    if (newTransactionCreated) {
+      GetTransactionsUseCase.execute();
+      setNewTransactionCreated(false);
+    }
+  }, [newTransactionCreated, transactions]);
 
   const {
     register,
@@ -80,7 +90,8 @@ export function TransactionModal() {
     categoryId,
   }: FormProps) {
     const descriptionAlreadyExist = transactions.find(
-      (transaction) => transaction.description === description
+      (transaction) =>
+        transaction.description.toLowerCase() === description
     );
 
     if (descriptionAlreadyExist) {
@@ -94,8 +105,13 @@ export function TransactionModal() {
       type: type === "income" ? 0 : 1,
       categoryId,
     })
-      .then(() => closeModalRef.current?.click())
-      .finally(() => reset());
+      .then(() => {
+        closeModalRef.current?.click();
+        setNewTransactionCreated(true);
+      })
+      .finally(() => {
+        reset();
+      });
   }
 
   return (
@@ -148,7 +164,7 @@ export function TransactionModal() {
           </TransactionTypeButton>
         </TransactionTypeContainer>
 
-        {hasError && <FormError>{errorMessage}</FormError>}
+        {/* {hasError && <FormError>{errorMessage}</FormError>} */}
 
         {nameAlreadyExistError && (
           <FormError>Uma transação com esse nome já existe</FormError>

@@ -27,6 +27,7 @@ import {
 } from "./styles";
 
 import { AnimatedSpinnerGap } from "../../styles/global";
+import moment from "moment";
 
 export const Home = () => {
   const { isLoading, transactions } = useStore(TransactionStore);
@@ -58,7 +59,7 @@ export const Home = () => {
   function cancelDeleteTransaction() {
     setDeleteConfirmation(false);
   }
-  
+
   return (
     <HomeWrapper>
       <Header />
@@ -78,7 +79,6 @@ export const Home = () => {
             </tr>
           </thead>
           <tbody>
-            
             {(filteredTransactions.length
               ? filteredTransactions
               : transactions
@@ -93,7 +93,7 @@ export const Home = () => {
                   </PriceHighLight>
                 </td>
                 <td>{transaction.category.description}</td>
-                <td>{transaction.createdAt}</td>
+                <td>{moment(transaction.createdAt).format("DD/MM/YYYY")}</td>
                 <td>
                   {isLoading ? (
                     <AnimatedSpinnerGap size={14} weight="bold" />
