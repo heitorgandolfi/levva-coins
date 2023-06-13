@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -34,7 +34,11 @@ const formSchema = yup
 export function CategoryModal() {
   const closeModalRef = useRef<HTMLButtonElement>(null);
 
-  const { isLoading, hasError, errorMessage } = useStore(CategoryStore);
+  const [categoryNameAlreadyExistError, setCategoryNameAlreadyExistError] =
+    useState<Boolean>(false);
+
+  const { isLoading, hasError, errorMessage, categories } =
+    useStore(CategoryStore);
 
   const {
     register,
@@ -46,6 +50,17 @@ export function CategoryModal() {
   });
 
   async function handleCreateCategory({ description }: FormProps) {
+    const descriptionAlreadyExist = categories.find(
+      (category) =>
+        category.description.toLowerCase() === description.toLowerCase()
+    );
+
+    if (descriptionAlreadyExist) {
+      setCategoryNameAlreadyExistError(true);
+      return;
+    }
+
+    setCategoryNameAlreadyExistError(false);
     NewCategoryUseCase.execute({ description })
       .then(() => closeModalRef.current?.click())
       .finally(() => reset());
@@ -65,7 +80,11 @@ export function CategoryModal() {
           <FormError>{errors.description.message}</FormError>
         )}
 
-        {hasError && <FormError>{errorMessage}</FormError>}
+        {/* {hasError && <FormError>{errorMessage}</FormError>} */}
+
+        {categoryNameAlreadyExistError && (
+          <FormError>Uma categoria com esse nome já existe</FormError>
+        )}
 
         <AuthButton type="submit">
           {isLoading ? "Carregando..." : "Cadastrar"}

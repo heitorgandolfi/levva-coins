@@ -1,7 +1,10 @@
 import * as RadioGroup from "@radix-ui/react-radio-group";
+
+import styled, { createGlobalStyle, keyframes } from "styled-components";
+
 import { Link } from "react-router-dom";
 
-import styled, { createGlobalStyle } from "styled-components";
+import { SpinnerGap } from "phosphor-react";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -155,5 +158,23 @@ export const TransactionTypeButton = styled(RadioGroup.Item)<TransactionTypeButt
   svg {
     color: ${props => props.theme.white};
     }
+  }
+`;
+
+const spinAnimation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const AnimatedSpinnerGap = styled(SpinnerGap)`
+  animation: ${spinAnimation} 1.5s linear infinite;
+
+  &:hover {
+    color: inherit !important;
+    cursor: default !important;
   }
 `;

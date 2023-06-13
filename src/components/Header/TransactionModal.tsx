@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -27,6 +27,7 @@ import {
   TransactionTypeButton,
   TransactionTypeContainer,
 } from "../../styles/global";
+import GetTransactionsUseCase from "../../useCases/GetTransactionsUseCase/GetTransactionsUseCase";
 
 interface FormProps {
   description: string;
@@ -50,8 +51,23 @@ const formSchema = yup
 export function TransactionModal() {
   const closeModalRef = useRef<HTMLButtonElement>(null);
 
+  const [nameAlreadyExistError, setNameAlreadyExistError] =
+    useState<Boolean>(false);
+
   const { categories } = useStore(CategoryStore);
-  const { isLoading, hasError, errorMessage } = useStore(TransactionStore);
+
+  const { isLoading, hasError, errorMessage, transactions } =
+    useStore(TransactionStore);
+
+  const [newTransactionCreated, setNewTransactionCreated] =
+    useState<Boolean>(false);
+
+  useEffect(() => {
+    if (newTransactionCreated) {
+      GetTransactionsUseCase.execute();
+      setNewTransactionCreated(false);
+    }
+  }, [newTransactionCreated, transactions]);
 
   const {
     register,
@@ -73,14 +89,29 @@ export function TransactionModal() {
     type,
     categoryId,
   }: FormProps) {
+    const descriptionAlreadyExist = transactions.find(
+      (transaction) =>
+        transaction.description.toLowerCase() === description
+    );
+
+    if (descriptionAlreadyExist) {
+      setNameAlreadyExistError(true);
+      return;
+    }
+
     NewTransactionUseCase.execute({
       description,
       amount,
       type: type === "income" ? 0 : 1,
       categoryId,
     })
-      .then(() => closeModalRef.current?.click())
-      .finally(() => reset());
+      .then(() => {
+        closeModalRef.current?.click();
+        setNewTransactionCreated(true);
+      })
+      .finally(() => {
+        reset();
+      });
   }
 
   return (
@@ -105,12 +136,14 @@ export function TransactionModal() {
         />
         {errors.amount && <FormError>{errors.amount.message}</FormError>}
 
-        <FormSelect {...register("categoryId")}>
-          <option value="" selected disabled hidden>
+        <FormSelect {...register("categoryId")} defaultValue="">
+          <option value="" disabled hidden>
             Categoria
           </option>
           {categories.map((category) => (
-            <option value={category.id}>{category.description}</option>
+            <option key={category.id} value={category.id}>
+              {category.description}
+            </option>
           ))}
         </FormSelect>
         {errors.categoryId && (
@@ -119,7 +152,7 @@ export function TransactionModal() {
 
         <TransactionTypeContainer
           {...register("type")}
-          onChange={(event) => setValue("type", event.target.value)}
+          onValueChange={(value) => setValue("type", value)}
         >
           <TransactionTypeButton variant="income" value="income">
             <ArrowCircleUp size={24} />
@@ -131,7 +164,11 @@ export function TransactionModal() {
           </TransactionTypeButton>
         </TransactionTypeContainer>
 
-        {hasError && <FormError>{errorMessage}</FormError>}
+        {/* {hasError && <FormError>{errorMessage}</FormError>} */}
+
+        {nameAlreadyExistError && (
+          <FormError>Uma transação com esse nome já existe</FormError>
+        )}
 
         <AuthButton type="submit">
           {isLoading ? "Carregando..." : "Cadastrar"}
