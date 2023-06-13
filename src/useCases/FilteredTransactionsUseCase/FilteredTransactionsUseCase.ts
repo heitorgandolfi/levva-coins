@@ -8,12 +8,12 @@ import {
   loadFilteredTransactionFail,
 } from "../../stores/FilteredTransactionStore/FilteredTransactionEvents";
 
-const execute = async (searchInput: any): Promise<void> => {
+const execute = async (taskId: string): Promise<void> => {
   loadFilteredTransaction();
 
-  return FilteredTransactionService.getFilteredTransactions()
+  return FilteredTransactionService.getFilteredTransactions(taskId)
     .then((transactions: TransactionValues[]) => {
-      loadFilteredTransactionDone(searchInput);
+    loadFilteredTransactionDone([transactions]);
     })
     .catch(({ hasError, message }: RequestError) => {
       loadFilteredTransactionFail({ hasError, message });

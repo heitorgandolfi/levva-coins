@@ -58,7 +58,7 @@ export const Home = () => {
   function cancelDeleteTransaction() {
     setDeleteConfirmation(false);
   }
-
+  
   return (
     <HomeWrapper>
       <Header />
@@ -78,6 +78,7 @@ export const Home = () => {
             </tr>
           </thead>
           <tbody>
+            
             {(filteredTransactions.length
               ? filteredTransactions
               : transactions

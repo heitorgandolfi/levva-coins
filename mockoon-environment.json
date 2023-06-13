@@ -116,7 +116,7 @@
       "type": "http",
       "documentation": "Authenticate one user",
       "method": "post",
-      "endpoint": "user/login",
+      "endpoint": "user/auth",
       "responses": [
         {
           "uuid": "d54cd6f4-0a9b-484d-9fdb-d7a2afd67d10",
@@ -353,7 +353,7 @@
       "type": "http",
       "documentation": "List all categories",
       "method": "get",
-      "endpoint": "category/all",
+      "endpoint": "category",
       "responses": [
         {
           "uuid": "2d6e0b2a-ec90-4480-9d64-8b39b2d8e1cf",
@@ -505,7 +505,7 @@
       "type": "http",
       "documentation": "Lista all transactions",
       "method": "get",
-      "endpoint": "transaction/all",
+      "endpoint": "transaction",
       "responses": [
         {
           "uuid": "13ca135d-39b1-4b0c-ab83-a5950aa93af7",

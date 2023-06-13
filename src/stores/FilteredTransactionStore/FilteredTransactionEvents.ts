@@ -11,3 +11,5 @@ export const loadFilteredTransactionDone = createEvent<TransactionValues[]>(
 export const loadFilteredTransactionFail = createEvent<RequestError>(
   "loadFilteredTransactionFail"
 );
+
+export const resetFilteredTransaction = createEvent();

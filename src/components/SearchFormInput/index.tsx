@@ -14,6 +14,8 @@ import { MagnifyingGlass } from "phosphor-react";
 import { SearchFormContainer } from "./styles";
 import FilteredTransactionStore from "../../stores/FilteredTransactionStore/FilteredTransactionStore";
 import { AnimatedSpinnerGap } from "../../styles/global";
+import { resetFilteredTransaction } from "../../stores/FilteredTransactionStore/FilteredTransactionEvents";
+import GetTransactionsUseCase from "../../useCases/GetTransactionsUseCase/GetTransactionsUseCase";
 
 interface InputProps {
   description: string;
@@ -30,25 +32,29 @@ export const SearchFormInput = () => {
   const { transactions } = useStore(TransactionStore);
   const { isLoading } = useStore(FilteredTransactionStore);
 
-  const { register, handleSubmit, reset, setFocus } = useForm<InputProps>({
+  const { register, handleSubmit, reset } = useForm<InputProps>({
     resolver: yupResolver(formSchema),
   });
 
-  // dynamic search by typing
   function handleNewSearch({ description }: InputProps) {
-    const filter = transactions.filter(
-      (transaction) =>
+    if (!description) {
+      resetFilteredTransaction();
+      GetTransactionsUseCase.execute();
+    } else {
+      const task = transactions.find((transaction) =>
         transaction.description
           .toLowerCase()
-          .includes(description.toLowerCase().trim()) ||
-        transaction.category.description
-          .toLowerCase()
-          .includes(description.toLowerCase().trim()) ||
-        transaction.amount.toString().includes(description.toLowerCase())
-    );
-    FilteredTransactionsUseCase.execute(filter);
+          .includes(description.toLowerCase().trim())
+      );
 
-    filter.length > 0 ? reset() : setFocus("description");
+      if (task) {
+        const taskId = task.id;
+        resetFilteredTransaction();
+        FilteredTransactionsUseCase.execute(taskId);
+      }
+    }
+
+    reset();
   }
 
   return (

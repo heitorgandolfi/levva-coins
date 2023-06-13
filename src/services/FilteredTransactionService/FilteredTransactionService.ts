@@ -5,9 +5,9 @@ import Api from "../../clients/api/Api";
 import { TransactionValues } from "../../domain/transaction";
 import { RequestError } from "../../domain/request";
 
-const getFilteredTransactions = async (): Promise<TransactionValues[]> => {
+const getFilteredTransactions = async (id: any): Promise<TransactionValues[]> => {
   return Api.get({
-    url: "/transaction/all", //fazer receber o id de parametro
+    url: `/transaction/${id}`
   })
     .then((response) => {
       return response.data;

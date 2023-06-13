@@ -4,6 +4,7 @@ import {
   loadFilteredTransaction,
   loadFilteredTransactionDone,
   loadFilteredTransactionFail,
+  resetFilteredTransaction,
 } from "./FilteredTransactionEvents";
 import { FilteredTransactionState } from "./FilteredTransactionState";
 
@@ -34,6 +35,7 @@ const FilteredTransactionStore = createStore<FilteredTransactionState>(
     isLoading: false,
     hasError: data.hasError,
     errorMessage: data.message,
-  }));
+  }))
+  .reset(resetFilteredTransaction);
 
 export default FilteredTransactionStore;

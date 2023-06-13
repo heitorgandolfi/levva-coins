@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -50,8 +50,14 @@ const formSchema = yup
 export function TransactionModal() {
   const closeModalRef = useRef<HTMLButtonElement>(null);
 
+  const [nameAlreadyExistError, setNameAlreadyExistError] =
+    useState<Boolean>(false);
+
   const { categories } = useStore(CategoryStore);
+
   const { isLoading, hasError, errorMessage } = useStore(TransactionStore);
+
+  const { transactions } = useStore(TransactionStore);
 
   const {
     register,
@@ -71,8 +77,17 @@ export function TransactionModal() {
     description,
     amount,
     type,
-    categoryId
+    categoryId,
   }: FormProps) {
+    const descriptionAlreadyExist = transactions.find(
+      (transaction) => transaction.description === description
+    );
+
+    if (descriptionAlreadyExist) {
+      setNameAlreadyExistError(true);
+      return;
+    }
+
     NewTransactionUseCase.execute({
       description,
       amount,
@@ -134,6 +149,10 @@ export function TransactionModal() {
         </TransactionTypeContainer>
 
         {hasError && <FormError>{errorMessage}</FormError>}
+
+        {nameAlreadyExistError && (
+          <FormError>Uma transação com esse nome já existe</FormError>
+        )}
 
         <AuthButton type="submit">
           {isLoading ? "Carregando..." : "Cadastrar"}
