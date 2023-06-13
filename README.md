@@ -22,27 +22,21 @@ Este é o Frontend do projeto [API Levva Coins](https://github.com/heitorgandolf
 2. Clone este repositório:
 
 ```plaintext
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/heitorgandolfi/levva-coins.git
 ```
 
-3. Acesse o diretório do projeto:
-
-```plaintext
-   cd nome-do-repositorio
-```
-
-4. Instale as dependências:
+3. Acesse o diretório do projeto e instale as dependências:
    
 ```
 npm install
 ```
 
-5. Configure as variáveis de ambiente:
+4. Configure as variáveis de ambiente:
 
 Edite o arquivo .env e defina as variáveis de ambiente necessárias, como a URL da API.
 
 
-6. Inicie o servidor de desenvolvimento:
+5. Inicie o servidor de desenvolvimento:
 
 ```
 npm run dev
