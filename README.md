@@ -1,6 +1,10 @@
+<div align="center">
+
 # Levva Coins
 
 <img src="http://img.shields.io/static/v1?label=STATUS&message=FINALIZADO&color=green&style=for-the-badge"/> <img src="http://img.shields.io/static/v1?label=release%20date&message=202023&color=green&style=for-the-badge"/> <img src="http://img.shields.io/static/v1?label=license&message=MIT&color=informational&style=for-the-badge"/>
+
+</div>
 
 Este é o Frontend do projeto [API Levva Coins](https://github.com/heitorgandolfi/Levva-Coins-Api), uma aplicação financeira para controle de transações, entradas e saídas dos usuários.
 
