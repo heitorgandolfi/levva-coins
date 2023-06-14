@@ -6,14 +6,10 @@ import { ArrowCircleUp, ArrowCircleDown, CurrencyDollar } from "phosphor-react";
 
 import { SummaryCard, SummaryContainer } from "./styles";
 import { defaultTheme } from "../../styles/defaultTheme";
+import { Formatter } from "../../utils";
 
 export const Summary = () => {
   const { transactions } = useStore(TransactionStore);
-
-  const formatMoney = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
 
   const accountBalance = transactions.reduce(
     (acc, transaction) => {
@@ -41,7 +37,7 @@ export const Summary = () => {
           <ArrowCircleUp size={32} color={defaultTheme["yellow-500"]} />
         </header>
 
-        <strong>{formatMoney.format(accountBalance.incomes)}</strong>
+        <strong>{Formatter.number(accountBalance.incomes)}</strong>
       </SummaryCard>
 
       <SummaryCard>
@@ -50,7 +46,7 @@ export const Summary = () => {
           <ArrowCircleDown size={32} color={defaultTheme["red-500"]} />
         </header>
 
-        <strong>{formatMoney.format(accountBalance.outcomes)}</strong>
+        <strong>{Formatter.number(accountBalance.outcomes)}</strong>
       </SummaryCard>
 
       <SummaryCard variant="balance">
@@ -59,7 +55,7 @@ export const Summary = () => {
           <CurrencyDollar size={32} color={defaultTheme["yellow-500"]} />
         </header>
 
-        <strong>{formatMoney.format(accountBalance.total)}</strong>
+        <strong>{Formatter.number(accountBalance.total)}</strong>
       </SummaryCard>
     </SummaryContainer>
   );

@@ -27,7 +27,7 @@ import {
 } from "./styles";
 
 import { AnimatedSpinnerGap } from "../../styles/global";
-import moment from "moment";
+import { Formatter } from "../../utils";
 
 export const Home = () => {
   const { isLoading, transactions } = useStore(TransactionStore);
@@ -36,11 +36,6 @@ export const Home = () => {
   );
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [selectedTransactionId, setSelectedTransactionId] = useState("");
-
-  const money = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
 
   useEffect(() => {
     GetTransactionsUseCase.execute();
@@ -89,11 +84,16 @@ export const Home = () => {
                   <PriceHighLight
                     variant={transaction.type === 0 ? "income" : "outcome"}
                   >
-                    {money.format(transaction.amount)}
+                    {Formatter.number(transaction.amount)}
                   </PriceHighLight>
                 </td>
                 <td>{transaction.category.description}</td>
-                <td>{moment(transaction.createdAt).format("DD/MM/YYYY")}</td>
+                <td>
+                  {Formatter.date(transaction.createdAt, {
+                    formatStr: "dd/MM/yyyy",
+                    isCapitalizedPtBr: true,
+                  })}
+                </td>
                 <td>
                   {isLoading ? (
                     <AnimatedSpinnerGap size={14} weight="bold" />
