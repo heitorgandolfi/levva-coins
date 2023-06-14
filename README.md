@@ -59,6 +59,9 @@ npm run dev
 - React Hook Form
 - Yup
 - React Router Dom
+- Radix UI
+- Date-fns
+- Mockoon
 
 ## Contribuição ## 
 
