@@ -8,4 +8,5 @@ export interface LoginValues {
   name: string;
   email: string;
   token: string;
+  password: string;
 }
