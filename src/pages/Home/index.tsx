@@ -55,6 +55,31 @@ export const Home = () => {
     setDeleteConfirmation(false);
   }
 
+  function getRemoveTransactionComponent(transactionId: string) {
+    if (isLoading) {
+      return <AnimatedSpinnerGap size={14} weight="bold" />;
+    }
+
+    if (deleteConfirmation && selectedTransactionId === transactionId) {
+      return (
+        <>
+          <ConfirmDeleteTask
+            onClick={() => confirmDeleteTransaction(transactionId)}
+          />
+          <CancelDeleteTask onClick={cancelDeleteTransaction} />
+        </>
+      );
+    }
+
+    return (
+      <Trash
+        size={20}
+        weight="bold"
+        onClick={() => handleDeleteTransaction(transactionId)}
+      />
+    );
+  }
+
   return (
     <HomeWrapper>
       <Header />
@@ -94,33 +119,7 @@ export const Home = () => {
                     isCapitalizedPtBr: true,
                   })}
                 </td>
-                <td>
-                  {isLoading ? (
-                    <AnimatedSpinnerGap size={14} weight="bold" />
-                  ) : (
-                    <>
-                      {deleteConfirmation &&
-                      selectedTransactionId === transaction.id ? (
-                        <>
-                          <ConfirmDeleteTask
-                            onClick={() =>
-                              confirmDeleteTransaction(transaction.id)
-                            }
-                          />
-                          <CancelDeleteTask onClick={cancelDeleteTransaction} />
-                        </>
-                      ) : (
-                        <Trash
-                          size={20}
-                          weight="bold"
-                          onClick={() =>
-                            handleDeleteTransaction(transaction.id)
-                          }
-                        />
-                      )}
-                    </>
-                  )}
-                </td>
+                <td>{getRemoveTransactionComponent(transaction.id)}</td>
               </tr>
             ))}
           </tbody>
