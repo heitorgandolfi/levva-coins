@@ -31,11 +31,13 @@ export const TransactionsTable = styled.table`
       padding: 1.25rem 2rem;
       background: ${(props) => props.theme["gray-500"]};
 
+      svg {
+        transition: all 0.4s ease-in-out;
+      }
+
       svg:only-child:hover {
         cursor: pointer;
         color: ${(props) => props.theme["red-300"]};
-
-        transition: all 0.3s ease-in-out;
       }
     }
   }
